@@ -1,7 +1,7 @@
 const $siteList = $(".siteList");
 const $lastLi = $siteList.find("li.last");
-const x = localStorage.getItem("x");
-const xObject = JSON.parse(x);
+const sites = localStorage.getItem("sites");
+const xObject = JSON.parse(sites);
 const hashMap = xObject || [
   {
     logo: "T",
@@ -71,5 +71,5 @@ $(".addButton").on("click", () => {
 });
 window.onbeforeunload = () => {
   const string = JSON.stringify(hashMap);
-  localStorage.setItem("x", string);
+  localStorage.setItem("sites", string);
 };
