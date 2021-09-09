@@ -9,7 +9,7 @@ const hashMap = xObject || [
   },
   {
     logo: "B",
-    url: "https://www.bilibili.com",
+    url: "https://bilibili.com",
   },
   {
     logo: "W",
@@ -17,7 +17,11 @@ const hashMap = xObject || [
   },
   {
     logo: "Z",
-    url: "https://www.zhihu.com",
+    url: "https://zhihu.com",
+  },
+  {
+    logo: "D",
+    url: "https://douyu.com",
   },
 ];
 const simplifyUrl = (url) => {
