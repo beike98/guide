@@ -73,6 +73,12 @@
         margin-left: auto;
         margin-right: auto;
       }
+      .globalFooter {
+        position: absolute;
+        bottom: 10px;
+        width: 100%;
+        text-align: center;
+      }
       .siteList {
         display: flex;
         flex-wrap: wrap;
@@ -163,8 +169,6 @@
       button {
         cursor: pointer;
       }
-    </style>
-    <style type="text/css">
       .icon {
         width: 1em;
         height: 1em;
@@ -200,44 +204,47 @@
         </li>
       </ul>
     </main>
+    <footer class="globalFooter">
+      <a href="https://beian.miit.gov.cn/">备案号：京ICP备2021028486号-1</a>
+    </footer>
     <script src="//at.alicdn.com/t/font_2678103_cutystgg45m.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
-      const $siteList = $(".siteList");
-      const $lastLi = $siteList.find("li.last");
-      const sites = localStorage.getItem("sites");
+      const $siteList = $('.siteList');
+      const $lastLi = $siteList.find('li.last');
+      const sites = localStorage.getItem('sites');
       const xObject = JSON.parse(sites);
       const hashMap = xObject || [
         {
-          logo: "T",
-          url: "https://tieba.baidu.com",
+          logo: 'T',
+          url: 'https://tieba.baidu.com',
         },
         {
-          logo: "B",
-          url: "https://bilibili.com",
+          logo: 'B',
+          url: 'https://bilibili.com',
         },
         {
-          logo: "W",
-          url: "https://weibo.com",
+          logo: 'W',
+          url: 'https://weibo.com',
         },
         {
-          logo: "Z",
-          url: "https://zhihu.com",
+          logo: 'Z',
+          url: 'https://zhihu.com',
         },
         {
-          logo: "D",
-          url: "https://douyu.com",
+          logo: 'D',
+          url: 'https://douyu.com',
         },
       ];
       const simplifyUrl = (url) => {
         return url
-          .replace("https://", "")
-          .replace("http://", "")
-          .replace("www.", "")
-          .replace(/\/.*/, "");
+          .replace('https://', '')
+          .replace('http://', '')
+          .replace('www.', '')
+          .replace(/\/.*/, '');
       };
       const render = () => {
-        $siteList.find("li:not(.last)").remove();
+        $siteList.find('li:not(.last)').remove();
         hashMap.forEach((node, index) => {
           const $li = $(`
       <li>
@@ -252,10 +259,10 @@
         </div>
       </li>
     `).insertBefore($lastLi);
-          $li.on("click", () => {
+          $li.on('click', () => {
             window.open(node.url);
           });
-          $li.on("click", ".close", (e) => {
+          $li.on('click', '.close', (e) => {
             e.stopPropagation();
             hashMap.splice(index, 1);
             render();
@@ -263,10 +270,10 @@
         });
       };
       render();
-      $(".addButton").on("click", () => {
-        let url = window.prompt("请输入你要添加的网站:", "https://");
-        if (url.indexOf("http") !== 0) {
-          url = "https://" + url;
+      $('.addButton').on('click', () => {
+        let url = window.prompt('请输入你要添加的网站:', 'https://');
+        if (url.indexOf('http') !== 0) {
+          url = 'https://' + url;
         }
         hashMap.push({
           logo: simplifyUrl(url)[0].toUpperCase(),
@@ -276,7 +283,7 @@
       });
       window.onbeforeunload = () => {
         const string = JSON.stringify(hashMap);
-        localStorage.setItem("sites", string);
+        localStorage.setItem('sites', string);
       };
     </script>
   </body>
